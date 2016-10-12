@@ -1,0 +1,10 @@
+<Graph id="teste" ordenacao="unidirected">
+  <Node id="v1"/>
+  <Node id="v2"/>
+  <Node id="v2"/>
+  <Node id="v3"/>
+  <Node id="v4"/>
+  <edge id="a1" source="v2" target="v1"/>
+  <edge id="a2" source="v3" target="v4"/>
+  <edge id="a3" source="v1" target="v2"/>
+</Graph>
