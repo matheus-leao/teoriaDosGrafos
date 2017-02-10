@@ -153,6 +153,10 @@ public class Menu extends javax.swing.JFrame {
         jButtonMalgrange = new javax.swing.JButton();
         jButtonPrim = new javax.swing.JButton();
         jButtonKruskal = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jButtonOrdenacao = new javax.swing.JButton();
+        jButtonProfundidade = new javax.swing.JButton();
+        jButtonLargura = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Inserir Aresta");
@@ -450,6 +454,37 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonKruskal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setText("Busca");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 690, -1, -1));
+
+        jButtonOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonOrdenacao.setText("Ordenacao");
+        jButtonOrdenacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenacaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 730, -1, -1));
+
+        jButtonProfundidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonProfundidade.setText("Profundidade");
+        jButtonProfundidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProfundidadeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonProfundidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, -1, -1));
+
+        jButtonLargura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonLargura.setText("Largura");
+        jButtonLargura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLarguraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonLargura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 730, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1191,6 +1226,58 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonKruskalActionPerformed
 
+    private void jButtonOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonOrdenacaoActionPerformed
+
+    private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfundidadeActionPerformed
+
+        List<Aresta> listaArestas = listaAresta;
+        nosVisitados.clear();
+        listaAdjacencia.clear();
+        listaArestas.clear();
+
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getNome() + "-profundidade");
+
+        nosVisitados.clear();
+        listaAdjacencia.clear();
+        listaArestas.clear();
+        Vertice vertice = g.getListaVertice().get(0);
+        ArrayList<Aresta> arestas = new ArrayList<Aresta>();
+        for (Aresta are : g.getListaAresta()) {
+            listaArestas.add(are);
+        }
+        for (List<Vertice> list : g.criarListaAdjacencia(g)) {
+            listaAdjacencia.add(list);
+        }
+        for (Aresta ares : buscaProf(vertice)) {
+            arestas.add(ares);
+        }
+        g.getListaAresta().clear();
+        g.novaListaAresta(arestas);
+
+        String xml = xstream.toXML(g);
+
+        System.out.println(xml);
+        g = null;
+        g = (Grafo) xstream.fromXML(xml);
+
+        xml = xstream.toXML(g);
+        System.out.println(xml);
+
+        try {
+            File xmlFile = new File("profundidade.xml");
+            JOptionPane.showMessageDialog(null, xml);
+            xstream.toXML(g, new FileWriter(xmlFile));
+        } catch (IOException ex) {
+            System.out.println("Erro ao Gravar Arquivo");
+        }
+    }//GEN-LAST:event_jButtonProfundidadeActionPerformed
+
+    private void jButtonLarguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLarguraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLarguraActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1243,10 +1330,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonDijkstra;
     private javax.swing.JButton jButtonKruskal;
+    private javax.swing.JButton jButtonLargura;
     private javax.swing.JButton jButtonMalgrange;
+    private javax.swing.JButton jButtonOrdenacao;
     private javax.swing.JButton jButtonPrim;
+    private javax.swing.JButton jButtonProfundidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
