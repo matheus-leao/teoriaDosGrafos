@@ -122,6 +122,7 @@ public class Menu extends javax.swing.JFrame {
         jButtonDijkstra = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jButtonMalgrange = new javax.swing.JButton();
+        jButtonPrim = new javax.swing.JButton();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Inserir Aresta");
@@ -401,6 +402,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonMalgrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, -1, -1));
+
+        jButtonPrim.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonPrim.setText("Prim");
+        jButtonPrim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrimActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonPrim, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -897,6 +907,172 @@ public class Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonMalgrangeActionPerformed
 
+    private void jButtonPrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrimActionPerformed
+        Grafo g = grafo.copiaGrafo(grafo, grafo.getNome() + "-prim");
+
+        ArrayList<Aresta> arestas = new ArrayList<Aresta>();
+        List<Aresta> arestasPossiveis = new ArrayList<Aresta>();
+        List<Aresta> arestasOriginais = new ArrayList<Aresta>(listaAresta);
+
+        List<Vertice> v = new ArrayList<Vertice>(listaVertice);
+
+        List<Vertice> b = new ArrayList<Vertice>();
+        b.add(listaVertice.get(0));
+        v.remove(v.get(0));
+        while (b.size() <= listaVertice.size()) {
+
+            for (Aresta are : arestasOriginais) {
+                if (are.getSource().equals(b.get(b.size() - 1).getId()) || are.getTarget().equals(b.get(b.size() - 1).getId())) {
+                    if (arestas.isEmpty()) {
+                        arestasPossiveis.add(are);
+                    } else {
+                        for (Vertice nov : v) {
+                            if (nov.getId() == are.getSource()) {
+                                for (Vertice nob : b) {
+                                    if (nob.getId() == are.getTarget()) {
+                                        arestasPossiveis.add(are);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        for (Vertice nov : v) {
+                            if (nov.getId() == are.getTarget()) {
+                                for (Vertice nob : b) {
+                                    if (nob.getId() == are.getSource()) {
+                                        arestasPossiveis.add(are);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            boolean bw = true;
+            boolean bo = false;
+            boolean bd = false;
+
+            while (bw == true) {
+                bw = false;
+                for (Aresta aresPos : arestasPossiveis) {
+                    String ao = aresPos.getSource();
+                    String ad = aresPos.getTarget();
+                    for (Vertice no1 : b) {
+                        if (no1.getId() == ao) {
+                            bo = true;
+                            break;
+                        } else {
+                            bw = false;
+                            bo = false;
+                        }
+                    }
+
+                    for (Vertice no2 : b) {
+                        if (no2.getId() == ad) {
+                            bd = true;
+                            break;
+                        } else {
+                            bw = false;
+                            bd = false;
+                        }
+                    }
+
+                    if (bo == true && bd == true) {
+                        arestasPossiveis.remove(aresPos);
+                        bw = true;
+                        for (Aresta a : arestasOriginais) {
+                            if (aresPos.getNome() == a.getNome() && aresPos.getValor() == a.getValor() && aresPos.getSource() == a.getTarget() && aresPos.getTarget() == a.getTarget()) {
+                                arestasOriginais.remove(a);
+                                break;
+                            }
+                        }
+                        break;
+                    } else {
+                        bw = false;
+                        bo = false;
+                        bd = false;
+                    }
+                }
+                if (bw == false) {
+                    break;
+                }
+            }
+
+            if (arestasPossiveis.size() > 0) {
+                int valorMenor = arestasPossiveis.get(0).getValor();
+
+                for (Aresta aresPos : arestasPossiveis) {
+                    if (aresPos.getValor() < valorMenor) {
+                        valorMenor = aresPos.getValor();
+                    }
+                }
+                for (Aresta aresPos : arestasPossiveis) {
+
+                    if (aresPos.getValor() == valorMenor) {
+                        arestas.add(new Aresta(aresPos.getNome(), aresPos.getValor(), aresPos.getSource(), aresPos.getTarget()));
+                        for (Aresta a : arestasPossiveis) {
+                            if (aresPos.getNome() == a.getNome() && aresPos.getValor() == a.getValor() && aresPos.getSource() == a.getSource() && aresPos.getTarget() == a.getTarget()) {
+                                arestasPossiveis.remove(a);
+                                break;
+                            }
+                        }
+                        for (Aresta a : arestasOriginais) {
+                            if (aresPos.getNome() == a.getNome() && aresPos.getValor() == a.getValor() && aresPos.getSource() == a.getTarget() && aresPos.getTarget() == a.getTarget()) {
+                                arestasOriginais.remove(a);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (b.size() < listaVertice.size()) {
+                String ao = arestas.get(arestas.size() - 1).getSource();
+                String ad = arestas.get(arestas.size() - 1).getTarget();
+
+                for (Vertice nov : v) {
+                    if (nov.getId() == ao) {
+                        for (Vertice nob : b) {
+                            if (nob.getId() == ad) {
+                                //adiciona
+                                b.add(new Vertice(ao));
+                                v.remove(new Vertice(ao));
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                for (Vertice nov : v) {
+                    if (nov.getId() == ad) {
+                        for (Vertice nob : b) {
+                            if (nob.getId() == ao) {
+                                b.add(new Vertice(ad));
+                                v.remove(new Vertice(ad));
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            } else {
+                break;
+            }
+        }
+        String T = "{";
+        for (Aresta aresta : arestas) {
+            T += aresta.getNome() + ", ";
+        }
+        T += "}";
+        g.getListaAresta().clear();
+        g.novaListaAresta(arestas);
+
+        JOptionPane.showMessageDialog(null, "Conjunto de arestas da árvore geradora mínima:\n" + T);
+    }//GEN-LAST:event_jButtonPrimActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -949,6 +1125,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonDijkstra;
     private javax.swing.JButton jButtonMalgrange;
+    private javax.swing.JButton jButtonPrim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
