@@ -230,5 +230,16 @@ public class Grafo {
         this.listaVertice = new ArrayList<Vertice>();
         this.listaVertice = vertices;
     }
+    
+    public Vertice getVerticePorId(String id) {
+        Vertice vertice = null;
+        for (Vertice no : this.listaVertice) {
+            if (no.getId().equals(id)) {
+                vertice = no;
+                break;
+            }
+        }
+        return vertice;
+    }
 
 }

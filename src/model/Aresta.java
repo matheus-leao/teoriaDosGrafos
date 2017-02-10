@@ -12,7 +12,7 @@ import model.Vertice;
  *
  * @author Math
  */
-public class Aresta {
+public class Aresta implements Comparable<Aresta> {
 
     private String id, source, target;
     private Vertice v1;
