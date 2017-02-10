@@ -1,4 +1,4 @@
-<Graph id="" ordenacao="directed">
+<Graph id="-kruskal" ordenacao="directed">
   <Node id="a"/>
   <Node id="q"/>
   <Node id="z"/>
@@ -6,5 +6,4 @@
   <edge id="aq" source="a" target="q" valor="12"/>
   <edge id="qz" source="q" target="z" valor="14"/>
   <edge id="zw" source="z" target="w" valor="16"/>
-  <edge id="wa" source="w" target="a" valor="18"/>
 </Graph>

@@ -1,0 +1,5 @@
+<Graph id="" ordenacao="directed">
+  <Node id="a"/>
+  <Node id="e"/>
+  <edge id="ae" source="a" target="e" valor="12"/>
+</Graph>

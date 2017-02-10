@@ -133,16 +133,7 @@ public class Menu extends javax.swing.JFrame {
         CriarListaAdjacencia = new javax.swing.JToggleButton();
         CriarConjunto = new javax.swing.JButton();
         InformacoesGrafo = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableAresta = new javax.swing.JTable();
-        DeletaAresta = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableVertice = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         valor = new javax.swing.JTextField();
         salvarGrafo = new javax.swing.JButton();
@@ -157,6 +148,17 @@ public class Menu extends javax.swing.JFrame {
         jButtonOrdenacao = new javax.swing.JButton();
         jButtonProfundidade = new javax.swing.JButton();
         jButtonLargura = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableAresta = new javax.swing.JTable();
+        DeletaAresta = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableVertice = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Inserir Aresta");
@@ -190,25 +192,25 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Inserir Aresta");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 220, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Inserir Vértice");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 220, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
         textAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textArestaActionPerformed(evt);
             }
         });
-        getContentPane().add(textAresta, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 243, 136, 28));
+        getContentPane().add(textAresta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 136, 28));
 
         textVertice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textVerticeActionPerformed(evt);
             }
         });
-        getContentPane().add(textVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 243, 124, 28));
+        getContentPane().add(textVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 124, 28));
 
         InsereVertice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         InsereVertice.setText("Inserir");
@@ -217,7 +219,7 @@ public class Menu extends javax.swing.JFrame {
                 inserirVertice(evt);
             }
         });
-        getContentPane().add(InsereVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 281, 136, 36));
+        getContentPane().add(InsereVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 136, 36));
 
         InsereAresta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         InsereAresta.setText("Inserir");
@@ -226,16 +228,16 @@ public class Menu extends javax.swing.JFrame {
                 inserirAresta(evt);
             }
         });
-        getContentPane().add(InsereAresta, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 397, 136, 36));
+        getContentPane().add(InsereAresta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, 136, 36));
 
-        getContentPane().add(vertice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 335, 136, -1));
+        getContentPane().add(vertice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 136, -1));
 
         vertice2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vertice2ActionPerformed(evt);
             }
         });
-        getContentPane().add(vertice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 371, 136, -1));
+        getContentPane().add(vertice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 136, -1));
 
         nomeGrafo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +256,7 @@ public class Menu extends javax.swing.JFrame {
                 criarMatrizIncidenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(criarMatrizIncidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 334, 135, 34));
+        getContentPane().add(criarMatrizIncidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 135, 34));
 
         CriarMatrizAdjacencia.setText("Matriz Adjacencia");
         CriarMatrizAdjacencia.addActionListener(new java.awt.event.ActionListener() {
@@ -262,11 +264,11 @@ public class Menu extends javax.swing.JFrame {
                 CriarMatrizAdjacenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(CriarMatrizAdjacencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 386, 135, 33));
+        getContentPane().add(CriarMatrizAdjacencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 135, 33));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("Opções Adicionais");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 306, -1, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, -1));
 
         CriarListaAdjacencia.setText("Lista Adjacencia");
         CriarListaAdjacencia.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +276,7 @@ public class Menu extends javax.swing.JFrame {
                 CriarListaAdjacenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(CriarListaAdjacencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 435, 135, 33));
+        getContentPane().add(CriarListaAdjacencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 135, 33));
 
         CriarConjunto.setText("Conjunto");
         CriarConjunto.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +284,7 @@ public class Menu extends javax.swing.JFrame {
                 CriarConjuntoActionPerformed(evt);
             }
         });
-        getContentPane().add(CriarConjunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 486, 135, 33));
+        getContentPane().add(CriarConjunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 135, 33));
 
         InformacoesGrafo.setText("InformaçõesGrafo");
         InformacoesGrafo.addActionListener(new java.awt.event.ActionListener() {
@@ -290,36 +292,124 @@ public class Menu extends javax.swing.JFrame {
                 InformacoesGrafoActionPerformed(evt);
             }
         });
-        getContentPane().add(InformacoesGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 541, 135, 33));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton1.setText("Grafo Orientado");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1grafoOrdenado(evt);
-            }
-        });
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 133, 136, 35));
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton2.setText("Grafo não Orientado");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2grafoNaoOrdenado(evt);
-            }
-        });
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 138, 190, -1));
+        getContentPane().add(InformacoesGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 135, 33));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Inserção");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 175, 262, 27));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 262, 27));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Valor:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+
+        valor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 140, -1));
+
+        salvarGrafo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        salvarGrafo.setText("Salvar Grafo");
+        salvarGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarGrafoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(salvarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 110, 40));
+
+        abrirGrafo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        abrirGrafo.setText("Abrir Grafo");
+        abrirGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirGrafoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(abrirGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, 40));
+
+        jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jToggleButton1.setText("Mostrar Grafo");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1mostrarGrafo(evt);
+            }
+        });
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, -1, 40));
+
+        jButtonDijkstra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonDijkstra.setText("Dijkstra");
+        jButtonDijkstra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDijkstraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonDijkstra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Algoritmos");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
+
+        jButtonMalgrange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonMalgrange.setText("Malgrange");
+        jButtonMalgrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMalgrangeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonMalgrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, -1, -1));
+
+        jButtonPrim.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonPrim.setText("Prim");
+        jButtonPrim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPrimActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonPrim, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, -1, -1));
+
+        jButtonKruskal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonKruskal.setText("Kruskal");
+        jButtonKruskal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKruskalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonKruskal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setText("Busca");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 600, -1, -1));
+
+        jButtonOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonOrdenacao.setText("Ordenacao");
+        jButtonOrdenacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenacaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 640, -1, -1));
+
+        jButtonProfundidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonProfundidade.setText("Profundidade");
+        jButtonProfundidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProfundidadeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonProfundidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, -1, -1));
+
+        jButtonLargura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonLargura.setText("Largura");
+        jButtonLargura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLarguraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonLargura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 640, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Deletar");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(844, 266, -1, -1));
 
         jTableAresta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,15 +429,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTableAresta);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(664, 306, 280, 230));
-
         DeletaAresta.setText("Deleta Aresta");
         DeletaAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeletaArestaActionPerformed(evt);
             }
         });
-        getContentPane().add(DeletaAresta, new org.netbeans.lib.awtextra.AbsoluteConstraints(764, 556, -1, -1));
 
         jTableVertice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -367,124 +454,91 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableVertice);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(974, 306, 99, 230));
-
         jButton3.setText("Deleta Vertice");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(974, 556, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("Valor:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 281, -1, -1));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(DeletaAresta)
+                        .addGap(111, 111, 111)
+                        .addComponent(jButton3)))
+                .addGap(24, 24, 24))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DeletaAresta)
+                    .addComponent(jButton3))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
-        valor.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, 470, 340));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton1.setText("Grafo Orientado");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valorActionPerformed(evt);
+                jRadioButton1grafoOrdenado(evt);
             }
         });
-        getContentPane().add(valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 281, 140, -1));
 
-        salvarGrafo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        salvarGrafo.setText("Salvar Grafo");
-        salvarGrafo.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton2.setText("Grafo não Orientado");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvarGrafoActionPerformed(evt);
+                jRadioButton2grafoNaoOrdenado(evt);
             }
         });
-        getContentPane().add(salvarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, 110, 40));
 
-        abrirGrafo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        abrirGrafo.setText("Abrir Grafo");
-        abrirGrafo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrirGrafoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(abrirGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, -1, 40));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
-        jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jToggleButton1.setText("Mostrar Grafo");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1mostrarGrafo(evt);
-            }
-        });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, -1, 40));
-
-        jButtonDijkstra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonDijkstra.setText("Dijkstra");
-        jButtonDijkstra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDijkstraActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonDijkstra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 610, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel17.setText("Algoritmos");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 560, -1, -1));
-
-        jButtonMalgrange.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonMalgrange.setText("Malgrange");
-        jButtonMalgrange.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMalgrangeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonMalgrange, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 610, -1, -1));
-
-        jButtonPrim.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonPrim.setText("Prim");
-        jButtonPrim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPrimActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonPrim, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 610, -1, -1));
-
-        jButtonKruskal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonKruskal.setText("Kruskal");
-        jButtonKruskal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonKruskalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonKruskal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setText("Busca");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 690, -1, -1));
-
-        jButtonOrdenacao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonOrdenacao.setText("Ordenacao");
-        jButtonOrdenacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOrdenacaoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonOrdenacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 730, -1, -1));
-
-        jButtonProfundidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonProfundidade.setText("Profundidade");
-        jButtonProfundidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProfundidadeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonProfundidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 730, -1, -1));
-
-        jButtonLargura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButtonLargura.setText("Largura");
-        jButtonLargura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLarguraActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonLargura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 730, -1, -1));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 330, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -682,16 +736,6 @@ public class Menu extends javax.swing.JFrame {
        
     }//GEN-LAST:event_InformacoesGrafoActionPerformed
 
-    private void jRadioButton1grafoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1grafoOrdenado
-        //Seta se o grafo é ordenado
-        grafo.setOrdenacao(TipoGrafo.directed);
-    }//GEN-LAST:event_jRadioButton1grafoOrdenado
-
-    private void jRadioButton2grafoNaoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2grafoNaoOrdenado
-        //Seta se o grafo é não ordenado
-        grafo.setOrdenacao(TipoGrafo.unidirected);
-    }//GEN-LAST:event_jRadioButton2grafoNaoOrdenado
-
     private void DeletaArestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletaArestaActionPerformed
         listaAresta.remove(jTableAresta.getSelectedRow());
         ((DefaultTableModel) jTableAresta.getModel()).removeRow(jTableAresta.getSelectedRow());
@@ -713,9 +757,9 @@ public class Menu extends javax.swing.JFrame {
         grafo.novaListaVertice(listaVertice);
         nomeGrafo.setText(null);
 
-        //        String nomeGrafoxml = "";
-        //        nomeGrafoxml = grafo.getNome();
-        //        nomeGrafoxml+= ".xml";
+            String nomeGrafoxml = "";
+            nomeGrafoxml = grafo.getNome();
+            nomeGrafoxml+= ".xml";
 
         String xml = xstream.toXML(grafo);
 
@@ -727,7 +771,7 @@ public class Menu extends javax.swing.JFrame {
         System.out.println(xml);
 
         try {
-            File xmlFile = new File("arq.xml");
+            File xmlFile = new File(nomeGrafoxml);
             xstream.toXML(grafo, new FileWriter(xmlFile));
         } catch (IOException ex) {
             System.out.println("Erro ao Gravar Arquivo");
@@ -1278,6 +1322,16 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonLarguraActionPerformed
 
+    private void jRadioButton2grafoNaoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2grafoNaoOrdenado
+        //Seta se o grafo é não ordenado
+        grafo.setOrdenacao(TipoGrafo.unidirected);
+    }//GEN-LAST:event_jRadioButton2grafoNaoOrdenado
+
+    private void jRadioButton1grafoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1grafoOrdenado
+        //Seta se o grafo é ordenado
+        grafo.setOrdenacao(TipoGrafo.directed);
+    }//GEN-LAST:event_jRadioButton1grafoOrdenado
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1348,6 +1402,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
