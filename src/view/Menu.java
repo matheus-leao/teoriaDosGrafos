@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Grafo;
@@ -32,6 +33,13 @@ public class Menu extends javax.swing.JFrame {
     private Aresta aresta;
     private Grafo grafo = new Grafo();
     private ArrayList<Vertice> listaVertice = new ArrayList<Vertice>();
+    private ArrayList<Aresta> listaAresta = new ArrayList<Aresta>();
+    private List<List<Vertice>> listaAdjacencia = new ArrayList<List<Vertice>>();
+    private List<Vertice> nosVisitados = new ArrayList<Vertice>();
+    private List<Vertice> todosNos = new ArrayList<Vertice>();
+    private List<Vertice> nosDestino = new ArrayList<Vertice>();
+    private List<Vertice> nosOrigem = new ArrayList<Vertice>();
+    XStream xstream = new XStream(new DomDriver());
     
     
     public Menu() {
@@ -226,6 +234,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton1.setText("Grafo Orientado");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +243,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton2.setText("Grafo não Orientado");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -420,6 +430,66 @@ public class Menu extends javax.swing.JFrame {
 
     private void InformacoesGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacoesGrafoActionPerformed
 
+        String informacoesGrafos = "";
+        informacoesGrafos += "\n A ordem do grafo é: " + grafo.getListaVertice().size();
+        informacoesGrafos += "\n\n Incidentes do Grafo: ";
+        for (int i = 0; i <= grafo.getListaAresta().size() - 1; i++) {
+            informacoesGrafos += "\n Os vertices: " + grafo.getListaAresta().get(i).getSource() + " e " + grafo.getListaAresta().get(i).getTarget() + " são incidentes a aresta: " + grafo.getListaAresta().get(i).getNome();
+        }
+        informacoesGrafos += "\n\n Adjacentes do Grafo: ";
+        for (int i = 0; i <= grafo.getListaAresta().size() - 1; i++) {
+            informacoesGrafos += "\n Os vertices: " + grafo.getListaAresta().get(i).getSource() + " e " + grafo.getListaAresta().get(i).getTarget() + " são adjacentes a aresta: " + grafo.getListaAresta().get(i).getNome();
+        }
+        if (grafo.getOrdenacao() == TipoGrafo.unidirected) {
+            for (int i = 0; i <= grafo.getListaAresta().size() - 1; i++) {
+                String vertice1 = grafo.getListaAresta().get(i).getSource();
+                String vertice2 = grafo.getListaAresta().get(i).getTarget();
+                for (int j = 0; j <= grafo.getListaAresta().size() - 1; j++) {
+                    String vertice3 = grafo.getListaAresta().get(j).getSource();
+                    String vertice4 = grafo.getListaAresta().get(j).getTarget();
+                    if (grafo.getListaAresta().get(i).getNome() == grafo.getListaAresta().get(j).getNome()) {
+                        break;
+                    } else if (vertice1.equals(vertice3) || vertice2.equals(vertice4) || vertice1.equals(vertice4) || vertice2.equals(vertice3)) {
+                        informacoesGrafos += "\n As arestas: " + grafo.getListaAresta().get(i).getNome() + " e " + grafo.getListaAresta().get(j).getNome() + " são adjacentes";
+
+                    }
+                }
+            }
+        }
+
+        informacoesGrafos += "\n\n Grau dos vertices: ";
+        int x = 0;
+        int y = 0;
+        if (grafo.getOrdenacao() == TipoGrafo.unidirected) {
+            for (int i = 0; i <= grafo.getListaVertice().size() - 1; i++) {
+                String vertice1 = grafo.getListaVertice().get(i).getNome();
+                for (int j = 0; j <= grafo.getListaAresta().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getListaAresta().get(j).getSource()) || vertice1.equals(grafo.getListaAresta().get(j).getTarget())) {
+                        x++;
+                    }
+                }
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + ": " + x;
+                x = 0;
+            }
+        }
+        if (grafo.getOrdenacao() == TipoGrafo.directed) {
+            for (int i = 0; i <= grafo.getListaVertice().size() - 1; i++) {
+                String vertice1 = grafo.getListaVertice().get(i).getNome();
+                for (int j = 0; j <= grafo.getListaAresta().size() - 1; j++) {
+                    if (vertice1.equals(grafo.getListaAresta().get(j).getSource())) {
+                        x++;
+                    }
+                    if (vertice1.equals(grafo.getListaAresta().get(j).getTarget())) {
+                        y++;
+                    }
+                }
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + " Grau de Emissão: " + x;
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + " Grau de Recepção: " + y;
+                x = 0;
+                y = 0;
+            }
+        }
+        JOptionPane.showMessageDialog(null, informacoesGrafos);
        
     }//GEN-LAST:event_InformacoesGrafoActionPerformed
 
