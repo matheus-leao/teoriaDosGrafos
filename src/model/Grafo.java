@@ -63,7 +63,51 @@ public class Grafo {
         this.listaAresta.add(a);
     }
 
+    public int[][] criarMatrizAdjacencia(Grafo a){
+    int[][] v = new int[a.getListaVertice().size()][a.getListaVertice().size()];
+    for(int i=0;i<a.getListaVertice().size();i++){
+        for(int j = 0; i <a.getListaVertice().size();i++){
+            v[i][j] = 0;
+        }
     
+    }  
+    if(a.getOrdenacao() == TipoGrafo.unidirected){
+    for(int i=0;i<a.getListaVertice().size();i++){
+        String vertice1 = a.getListaVertice().get(i).getNome();
+        for(int j=0;j<a.getListaAresta().size();j++){
+            if(vertice1.equals(a.getListaAresta().get(j).getSource())){
+                for(int k = 0; k<a.getListaVertice().size();k++){
+                    String vertice2 = a.getListaVertice().get(k).getNome();
+                    if(vertice1.equals(a.getListaAresta().get(j).getSource()) && vertice2.equals(a.getListaAresta().get(j).getTarget())){
+                        v[i][k] = 1;
+                        v[k][i] = 1;
+                        break;
+                }
+                }
+            }
+        }
+    }
+    }
+    
+    if(a.getOrdenacao() == TipoGrafo.directed){
+    for(int i=0;i<a.getListaVertice().size();i++){
+        String vertice1 = a.getListaVertice().get(i).getNome();
+        for(int j=0;j<a.getListaAresta().size();j++){
+            if(vertice1.equals(a.getListaAresta().get(j).getSource())){
+                for(int k = 0; k<a.getListaVertice().size();k++){
+                    String vertice2 = a.getListaVertice().get(k).getNome();
+                    if(vertice1.equals(a.getListaAresta().get(j).getSource()) && vertice2.equals(a.getListaAresta().get(j).getTarget())){
+                        v[i][k] = 1;
+                        break;
+                }
+                }
+            }
+        }
+    }
+    }
+        
+    return v;
+    }
     
     
 }
