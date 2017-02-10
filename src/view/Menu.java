@@ -601,14 +601,14 @@ public class Menu extends javax.swing.JFrame {
             matrizIncidencia += "\n Matriz Incidencia \n";
             if (control == 0) {    
                 control = 1;
-                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+                matrizIncidencia += "             " + g.getListaAresta().get(i).getNome();
             } else {
-                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+                matrizIncidencia += "             " + g.getListaAresta().get(i).getNome();
             }
         }
         for (int j = 0; j <= (g.getListaVertice().size() - 1); j++) {
-            matrizIncidencia += "\n";
-            matrizIncidencia += "                  " + g.getListaVertice().get(j).getId();
+            matrizIncidencia += "          \n";
+            matrizIncidencia += "          " + g.getListaVertice().get(j).getId();
             for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
                 matrizIncidencia += "  " + v[j][i];
             }
@@ -628,7 +628,7 @@ public class Menu extends javax.swing.JFrame {
                 control = 1;
                 matrizAdjacencia += "   " + g.getListaVertice().get(i).getId();
             } else {
-                matrizAdjacencia += " " + g.getListaVertice().get(i).getId();
+                matrizAdjacencia += "   " + g.getListaVertice().get(i).getId();
             }
         }
         for (int j = 0; j <= (g.getListaVertice().size() - 1); j++) {
@@ -1270,7 +1270,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonKruskalActionPerformed
 
     private void jButtonOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenacaoActionPerformed
-        // TODO add your handling code here:
+        String ordenacao = "";
+        ordenacao = "Não conseguimos implementar esse.";
+        JOptionPane.showMessageDialog(null, ordenacao);
     }//GEN-LAST:event_jButtonOrdenacaoActionPerformed
 
     private void jButtonProfundidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfundidadeActionPerformed
@@ -1318,7 +1320,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProfundidadeActionPerformed
 
     private void jButtonLarguraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLarguraActionPerformed
-        // TODO add your handling code here:
+        String largura = "";
+        largura = "Não conseguimos implementar esse.";
+        JOptionPane.showMessageDialog(null, largura);
     }//GEN-LAST:event_jButtonLarguraActionPerformed
 
     private void jRadioButton2grafoNaoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2grafoNaoOrdenado
