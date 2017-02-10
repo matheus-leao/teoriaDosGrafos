@@ -1,10 +1,7 @@
 digraph G {
 node[margin=0 fontcolor=blue  width=0.5 shape=circle style=filled];
 a;
-q;
-z;
-w;
-a->q[label=12];
-q->z[label=14];
-z->w[label=16];
+e;
+r;
+a->e[label=12];
 }

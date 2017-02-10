@@ -618,28 +618,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_criarMatrizIncidenciaActionPerformed
 
     private void CriarMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarMatrizAdjacenciaActionPerformed
+        String matrizAdjacencia = "";
         int control = 0;
-        String matrizIncidencia = "";
         Grafo g = grafo;
-        int[][] v = g.criarMatrizIncidencia(g);
-        for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
-            matrizIncidencia += "\n Matriz Incidencia \n";
-            if (control == 0) {    
+        int[][] v = g.criarMatrizAdjacencia(g);
+        for (int i = 0; i <= (g.getListaVertice().size() - 1); i++) {
+            if (control == 0) {
+                matrizAdjacencia += "\nVertices   ";
                 control = 1;
-                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+                matrizAdjacencia += "   " + g.getListaVertice().get(i).getId();
             } else {
-                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+                matrizAdjacencia += " " + g.getListaVertice().get(i).getId();
             }
         }
         for (int j = 0; j <= (g.getListaVertice().size() - 1); j++) {
-            matrizIncidencia += "\n";
-            matrizIncidencia += "                  " + g.getListaVertice().get(j).getId();
-            for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
-                matrizIncidencia += "  " + v[j][i];
+            matrizAdjacencia += "\n";
+            matrizAdjacencia += "                  " + g.getListaVertice().get(j).getId();
+            for (int i = 0; i <= (g.getListaVertice().size() - 1); i++) {
+                matrizAdjacencia += "  " + v[j][i];
             }
         }
-        
-        JOptionPane.showMessageDialog(null, matrizIncidencia);
+        JOptionPane.showMessageDialog(null, matrizAdjacencia);
     }//GEN-LAST:event_CriarMatrizAdjacenciaActionPerformed
 
     private void CriarListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarListaAdjacenciaActionPerformed
