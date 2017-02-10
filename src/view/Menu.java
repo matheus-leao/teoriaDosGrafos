@@ -438,11 +438,45 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_criarMatrizIncidenciaActionPerformed
 
     private void CriarMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarMatrizAdjacenciaActionPerformed
+        int control = 0;
+        String matrizIncidencia = "";
+        Grafo g = grafo;
+        int[][] v = g.criarMatrizIncidencia(g);
+        for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
+            matrizIncidencia += "\n Matriz Incidencia \n";
+            if (control == 0) {    
+                control = 1;
+                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+            } else {
+                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+            }
+        }
+        for (int j = 0; j <= (g.getListaVertice().size() - 1); j++) {
+            matrizIncidencia += "\n";
+            matrizIncidencia += "                  " + g.getListaVertice().get(j).getNome();
+            for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
+                matrizIncidencia += "  " + v[j][i];
+            }
+        }
         
+        JOptionPane.showMessageDialog(null, matrizIncidencia);
     }//GEN-LAST:event_CriarMatrizAdjacenciaActionPerformed
 
     private void CriarListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarListaAdjacenciaActionPerformed
+        String listaAdjacenciaImpressao = " Lista de Adjacencia ";
         
+        ArrayList<ArrayList> listaAdjacencia = grafo.criarListaAdjacencia(grafo);
+        for (int i = 0; i < listaAdjacencia.size(); i++) {
+            ArrayList<String> lista = listaAdjacencia.get(i);
+            listaAdjacenciaImpressao += "\n";
+            for (int j = 0; j < lista.size(); j++) {
+                listaAdjacenciaImpressao += lista.get(j) + "->";
+                if (j == (lista.size() - 1)) {
+                    listaAdjacenciaImpressao += "null";
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, listaAdjacenciaImpressao);
     }//GEN-LAST:event_CriarListaAdjacenciaActionPerformed
 
     private void CriarConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarConjuntoActionPerformed
