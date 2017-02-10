@@ -153,4 +153,41 @@ public class Grafo {
         return v;
     }
 
+    public ArrayList<ArrayList> criarListaAdjacencia(Grafo a) {
+        ArrayList<ArrayList> listaIncidencia = new ArrayList<ArrayList>();
+
+        if (a.getOrdenacao() == TipoGrafo.directed) {
+            for (int i = 0; i < a.getListaVertice().size(); i++) {
+                ArrayList<String> lista = new ArrayList<String>();
+                String vertice1 = a.getListaVertice().get(i).getNome();
+                lista.add(vertice1);
+                for (int j = 0; j < a.getListaAresta().size(); j++) {
+                    if (vertice1.equals(a.getListaAresta().get(j).getSource())) {
+                        lista.add(a.getListaAresta().get(j).getTarget());
+                    }
+                }
+                listaIncidencia.add(lista);
+            }
+        }
+
+        if (a.getOrdenacao() == TipoGrafo.unidirected) {
+            for (int i = 0; i < a.getListaVertice().size(); i++) {
+                ArrayList<String> lista = new ArrayList<String>();
+                String vertice1 = a.getListaVertice().get(i).getNome();
+                lista.add(vertice1);
+                for (int j = 0; j < a.getListaAresta().size(); j++) {
+                    if (vertice1.equals(a.getListaAresta().get(j).getSource()) || vertice1.equals(a.getListaAresta().get(j).getTarget())) {
+                        if (vertice1.equals(a.getListaAresta().get(j).getSource())) {
+                            lista.add(a.getListaAresta().get(j).getTarget());
+                        } else {
+                            lista.add(a.getListaAresta().get(j).getSource());
+                        }
+                    }
+                }
+                listaIncidencia.add(lista);
+            }
+        }
+        return listaIncidencia;
+    }
+
 }
