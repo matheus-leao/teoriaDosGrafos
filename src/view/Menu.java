@@ -413,7 +413,28 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_abrirGrafoActionPerformed
 
     private void criarMatrizIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarMatrizIncidenciaActionPerformed
+        int control = 0;
+        String matrizIncidencia = "";
+        Grafo g = grafo;
+        int[][] v = g.criarMatrizIncidencia(g);
+        for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
+            matrizIncidencia += "\n Matriz Incidencia \n";
+            if (control == 0) {    
+                control = 1;
+                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+            } else {
+                matrizIncidencia += "  " + g.getListaAresta().get(i).getNome();
+            }
+        }
+        for (int j = 0; j <= (g.getListaVertice().size() - 1); j++) {
+            matrizIncidencia += "\n";
+            matrizIncidencia += "                  " + g.getListaVertice().get(j).getId();
+            for (int i = 0; i <= (g.getListaAresta().size() - 1); i++) {
+                matrizIncidencia += "  " + v[j][i];
+            }
+        }
         
+        JOptionPane.showMessageDialog(null, matrizIncidencia);
     }//GEN-LAST:event_criarMatrizIncidenciaActionPerformed
 
     private void CriarMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarMatrizAdjacenciaActionPerformed
@@ -425,7 +446,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_CriarListaAdjacenciaActionPerformed
 
     private void CriarConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarConjuntoActionPerformed
-       
+       String criarConjunto = "Conjunto:";
+        for (Vertice v : grafo.getListaVertice()) {
+            criarConjunto += "\nvertices: " + v.getId();
+        }
+        for (Aresta a : grafo.getListaAresta()) {
+            criarConjunto += "\nAresta: ->" + a.getNome();
+            criarConjunto += " vertices: " + a.getSource() + "  " + a.getTarget();
+        }
+        JOptionPane.showMessageDialog(null, criarConjunto);
     }//GEN-LAST:event_CriarConjuntoActionPerformed
 
     private void InformacoesGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacoesGrafoActionPerformed
@@ -462,19 +491,19 @@ public class Menu extends javax.swing.JFrame {
         int y = 0;
         if (grafo.getOrdenacao() == TipoGrafo.unidirected) {
             for (int i = 0; i <= grafo.getListaVertice().size() - 1; i++) {
-                String vertice1 = grafo.getListaVertice().get(i).getNome();
+                String vertice1 = grafo.getListaVertice().get(i).getId();
                 for (int j = 0; j <= grafo.getListaAresta().size() - 1; j++) {
                     if (vertice1.equals(grafo.getListaAresta().get(j).getSource()) || vertice1.equals(grafo.getListaAresta().get(j).getTarget())) {
                         x++;
                     }
                 }
-                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + ": " + x;
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getId() + ": " + x;
                 x = 0;
             }
         }
         if (grafo.getOrdenacao() == TipoGrafo.directed) {
             for (int i = 0; i <= grafo.getListaVertice().size() - 1; i++) {
-                String vertice1 = grafo.getListaVertice().get(i).getNome();
+                String vertice1 = grafo.getListaVertice().get(i).getId();
                 for (int j = 0; j <= grafo.getListaAresta().size() - 1; j++) {
                     if (vertice1.equals(grafo.getListaAresta().get(j).getSource())) {
                         x++;
@@ -483,8 +512,8 @@ public class Menu extends javax.swing.JFrame {
                         y++;
                     }
                 }
-                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + " Grau de Emissão: " + x;
-                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getNome() + " Grau de Recepção: " + y;
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getId() + " Grau de Emissão: " + x;
+                informacoesGrafos += "\n vertice: " + grafo.getListaVertice().get(i).getId() + " Grau de Recepção: " + y;
                 x = 0;
                 y = 0;
             }
