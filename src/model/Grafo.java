@@ -190,4 +190,26 @@ public class Grafo {
         return listaIncidencia;
     }
 
+    public String formataArestas(ArrayList<Aresta> listaAdjacencia, String seta) {
+        String arestasFormatadas = "";
+        for (int i = 0; i < listaAdjacencia.size(); i++) {
+            Aresta a = listaAdjacencia.get(i);
+            arestasFormatadas = arestasFormatadas + a.getSource() + seta + a.getTarget() + "[label=" + a.getValor() + "]" + ";\n";
+        }
+        return arestasFormatadas;
+    }
+
+    public Grafo copiaGrafo(Grafo grafo, String nome) {
+        ArrayList<Vertice> listaVertice2 = new ArrayList<Vertice>();
+        ArrayList<Aresta> listaArestas2 = new ArrayList<Aresta>();
+        for (Vertice n : grafo.getListaVertice()) {
+            listaVertice2.add(n);
+        }
+        for (Aresta a : grafo.getListaAresta()) {
+            listaArestas2.add(a);
+        }
+        Grafo g = new Grafo(nome, grafo.getOrdenacao(), listaVertice2, listaArestas2);
+        return g;
+    }
+
 }
