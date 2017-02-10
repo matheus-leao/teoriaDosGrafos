@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Grafo;
 import model.TipoGrafo;
@@ -35,6 +36,19 @@ public class Menu extends javax.swing.JFrame {
     
     public Menu() {
         initComponents();
+        xstream.alias("Node", Vertice.class);
+        xstream.alias("Graph", Grafo.class);
+        xstream.alias("edge", Aresta.class);
+        xstream.omitField(Aresta.class, "v1");
+        xstream.omitField(Aresta.class, "v2");
+        xstream.useAttributeFor("source", String.class);
+        xstream.useAttributeFor("target", String.class);
+        xstream.addImplicitCollection(Grafo.class, "listaVertice", Vertice.class);
+        xstream.addImplicitCollection(Grafo.class, "listaAresta", Aresta.class);
+        xstream.useAttributeFor("id", String.class);
+        xstream.useAttributeFor("valor", int.class);
+        xstream.useAttributeFor("ordenacao", TipoGrafo.class);
+        xstream.aliasAttribute("edgedefault", "tipo");
         
         
     }
@@ -57,22 +71,31 @@ public class Menu extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel5 = new javax.swing.JLabel();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        grafoCheck = new javax.swing.JCheckBox();
-        grafoNaoOrdenado = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textAresta = new javax.swing.JTextField();
         textVertice = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        InsereVertice = new javax.swing.JButton();
+        InsereAresta = new javax.swing.JButton();
         salvarGrafo = new javax.swing.JButton();
         abrirGrafo = new javax.swing.JButton();
         vertice1 = new javax.swing.JComboBox();
         vertice2 = new javax.swing.JComboBox();
         nomeGrafo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        criarMatrizIncidencia = new javax.swing.JButton();
+        CriarMatrizAdjacencia = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        CriarListaAdjacencia = new javax.swing.JToggleButton();
+        CriarConjunto = new javax.swing.JButton();
+        InformacoesGrafo = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel12 = new javax.swing.JLabel();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Inserir Aresta");
@@ -94,33 +117,17 @@ public class Menu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 593, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel1.setText("Criação de Grafos");
 
-        grafoCheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        grafoCheck.setText("Grafo Ordenado");
-        grafoCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                grafoOrdenado(evt);
-            }
-        });
-
-        grafoNaoOrdenado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        grafoNaoOrdenado.setText("Grafo não Ordenado");
-        grafoNaoOrdenado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                grafoNaoOrdenadoActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Inserir Aresta");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Inserir Vétice");
+        jLabel4.setText("Inserir Vértice");
 
         textAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,17 +141,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Inserir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        InsereVertice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        InsereVertice.setText("Inserir");
+        InsereVertice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inserirVertice(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("Inserir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        InsereAresta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        InsereAresta.setText("Inserir");
+        InsereAresta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inserirAresta(evt);
             }
@@ -181,6 +188,64 @@ public class Menu extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Inserir Nome do grafo");
 
+        criarMatrizIncidencia.setText("Matriz Incidencia");
+        criarMatrizIncidencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarMatrizIncidenciaActionPerformed(evt);
+            }
+        });
+
+        CriarMatrizAdjacencia.setText("Matriz Adjacencia");
+        CriarMatrizAdjacencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CriarMatrizAdjacenciaActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("Opções Adicionais");
+
+        CriarListaAdjacencia.setText("Lista Adjacencia");
+        CriarListaAdjacencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CriarListaAdjacenciaActionPerformed(evt);
+            }
+        });
+
+        CriarConjunto.setText("Conjunto");
+        CriarConjunto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CriarConjuntoActionPerformed(evt);
+            }
+        });
+
+        InformacoesGrafo.setText("InformaçõesGrafo");
+        InformacoesGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InformacoesGrafoActionPerformed(evt);
+            }
+        });
+
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton1.setText("Grafo Orientado");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1grafoOrdenado(evt);
+            }
+        });
+
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton2.setText("Grafo não Orientado");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2grafoNaoOrdenado(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Inserção");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,43 +254,53 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textAresta, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(grafoCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(grafoNaoOrdenado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(3, 3, 3)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(textVertice, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel4)))
+                                        .addComponent(InsereVertice, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(salvarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(70, 70, 70)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(textVertice, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(vertice1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(salvarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(63, 63, 63)
-                                            .addComponent(abrirGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(vertice2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                                    .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(54, 54, 54)))))
-                .addGap(25, 25, 25))
+                                            .addComponent(vertice2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(InsereAresta, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(textAresta, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(vertice1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(abrirGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CriarMatrizAdjacencia, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                .addComponent(jLabel16)
+                                .addComponent(criarMatrizIncidencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CriarConjunto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CriarListaAdjacencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(InformacoesGrafo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(103, 103, 103))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,33 +310,51 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(grafoNaoOrdenado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(grafoCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6)
+                    .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel16)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textAresta, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(textVertice))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vertice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(vertice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nomeGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(abrirGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(criarMatrizIncidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CriarMatrizAdjacencia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(CriarListaAdjacencia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CriarConjunto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(InformacoesGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textVertice, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(InsereVertice, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textAresta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(vertice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(vertice2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(InsereAresta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(abrirGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(salvarGrafo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap())
         );
 
         pack();
@@ -289,21 +382,13 @@ public class Menu extends javax.swing.JFrame {
         vertice.setNome(textVertice.getText());
         listaVertice.add(vertice);
         grafo.setListaVertice(vertice);
-        vertice1.addItem(vertice.getNome());
-        vertice2.addItem(vertice.getNome());
+        vertice1.addItem(vertice.getId());
+        vertice2.addItem(vertice.getId());
     }//GEN-LAST:event_inserirVertice
 
     private void salvarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarGrafoActionPerformed
-        ty
+        
     }//GEN-LAST:event_salvarGrafoActionPerformed
-
-    private void grafoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafoOrdenado
-        grafo.setOrdenacao(TipoGrafo.directed);        // TODO add your handling code here:
-    }//GEN-LAST:event_grafoOrdenado
-
-    private void grafoNaoOrdenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grafoNaoOrdenadoActionPerformed
-        grafo.setOrdenacao(TipoGrafo.unidirected);        // TODO add your handling code here:
-    }//GEN-LAST:event_grafoNaoOrdenadoActionPerformed
 
     private void vertice2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vertice2ActionPerformed
         // TODO add your handling code here:
@@ -316,6 +401,37 @@ public class Menu extends javax.swing.JFrame {
     private void abrirGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirGrafoActionPerformed
         
     }//GEN-LAST:event_abrirGrafoActionPerformed
+
+    private void criarMatrizIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarMatrizIncidenciaActionPerformed
+        
+    }//GEN-LAST:event_criarMatrizIncidenciaActionPerformed
+
+    private void CriarMatrizAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarMatrizAdjacenciaActionPerformed
+        
+    }//GEN-LAST:event_CriarMatrizAdjacenciaActionPerformed
+
+    private void CriarListaAdjacenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarListaAdjacenciaActionPerformed
+        
+    }//GEN-LAST:event_CriarListaAdjacenciaActionPerformed
+
+    private void CriarConjuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarConjuntoActionPerformed
+       
+    }//GEN-LAST:event_CriarConjuntoActionPerformed
+
+    private void InformacoesGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacoesGrafoActionPerformed
+
+       
+    }//GEN-LAST:event_InformacoesGrafoActionPerformed
+
+    private void jRadioButton1grafoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1grafoOrdenado
+        //Seta se o grafo é ordenado
+        grafo.setOrdenacao(TipoGrafo.directed);
+    }//GEN-LAST:event_jRadioButton1grafoOrdenado
+
+    private void jRadioButton2grafoNaoOrdenado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2grafoNaoOrdenado
+        //Seta se o grafo é não ordenado
+        grafo.setOrdenacao(TipoGrafo.unidirected);
+    }//GEN-LAST:event_jRadioButton2grafoNaoOrdenado
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -351,22 +467,31 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CriarConjunto;
+    private javax.swing.JToggleButton CriarListaAdjacencia;
+    private javax.swing.JButton CriarMatrizAdjacencia;
+    private javax.swing.JButton InformacoesGrafo;
+    private javax.swing.JButton InsereAresta;
+    private javax.swing.JButton InsereVertice;
     private javax.swing.JButton abrirGrafo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JCheckBox grafoCheck;
-    private javax.swing.JCheckBox grafoNaoOrdenado;
-    private javax.swing.JButton jButton1;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.JButton criarMatrizIncidencia;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField nomeGrafo;
     private javax.swing.JButton salvarGrafo;
     private javax.swing.JTextField textAresta;
