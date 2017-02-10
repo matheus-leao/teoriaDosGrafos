@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Math
@@ -23,5 +25,12 @@ public class Vertice {
     public void setNome(String nome) {
         this.id = nome;
     }
-    
+    public static Vertice getVerticeById(String id, List<Vertice> nos) {
+        for (Vertice no : nos) {
+            if (no.getId().equals(id)) {
+                return no;
+            }
+        }
+        return null;
+    }
 }
